@@ -45,8 +45,7 @@ class MySN(SemanticNetwork):
 
         # new_list = []
         # for rel in relations:
-        #     if isinstance(rel, Depends):
-        #         print("[ADDING]: ", rel.entity2)
+        #     if isinstance(rel, Depends)
         #         new_list.append(rel.entity2)
         #     new_list += (self.query_causes(rel.entity2))
 
@@ -88,29 +87,19 @@ class MyBN(BayesNet):
         :return: list of the variables that make up the Markov blanket of that variable.
         """
         # filhos = []
-        #
         # for entity in list(self.dependencies):
         #     for p in list(self.dependencies[entity])[0]:
         #         if p[0] == var:
-        #             print("UAU")
         #             filhos.append(entity)
 
         children_list = [entity for entity in list(self.dependencies) for mother in list(self.dependencies[entity])[0] if mother[0] == var]
-        # print("[CHILDREN_LIST]: ", children_list)
 
         # parent_list = []
-        # print(children_list + [var])
         # for entity in children_list + [var]:
         #     print("[SEPARATOR]", entity, list(self.dependencies[entity])[0])
         #     for mother in list(self.dependencies[entity])[0]:
-        #         print("-->> ", list(mother))
-        #         for p in list(mother):
-        #             print("p1 -->> :", p)
         #         if mother[0] != var:
-        #             print("[APPENDING] ", mother[0])
         #             parent_list.append(mother[0])
-        #
-        # print("[PARENT_LIST]: ", parent_list)
 
         final_list = [mother[0] for entity in (children_list + [var]) for mother in list(self.dependencies[entity])[0] if mother[0] != var] + children_list
 
